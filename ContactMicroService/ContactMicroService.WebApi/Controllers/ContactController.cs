@@ -11,20 +11,54 @@ namespace ContactMicroService.WebApi.Controllers
     public class ContactController : ControllerBase
     {
         private readonly IContactService _contactService;
-        public ContactController(IContactService contactService)
+        private readonly ILogger<ContactController> _logger;
+        public ContactController(IContactService contactService, ILogger<ContactController> logger)
         {
             _contactService = contactService;
+            _logger = logger;
         }
         [HttpGet("[action]")]
         public async Task<Response<IEnumerable<Contact>>> GetAllData()
         {
-            var contacts = await _contactService.GetAllContacts();
-            return new Response<IEnumerable<Contact>>().Ok(contacts.Count(), contacts);
+            try
+            {
+                var contacts = await _contactService.GetAllContacts();
+                return new Response<IEnumerable<Contact>>().Ok(contacts.Count(), contacts);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return new Response<IEnumerable<Contact>>().NotFound("Contact cannot found.");
+            }
+        }
+
+        [HttpPost("[action]/{id}")]
+        public async Task<Response<Contact>> GetById(int id)
+        {
+            try
+            {
+
+                if (id != 0)
+                {
+                    var contact = await _contactService.GetContactById(id);
+                    if (contact != null)
+                        return new Response<Contact>().Ok(1, contact);
+                    else return new Response<Contact>().NotFound("Contact cannot found.");
+                }
+                else
+                    return new Response<Contact>().NotFound("Contact cannot found.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return new Response<Contact>().NotFound("Unhandled Exception.");
+            }
+
         }
 
 
         [HttpPost("[action]")]
-        public async Task<Response<Contact>> Create(Contact contact)
+        public async Task<Response<Contact>> CreateOrUpdate(Contact contact)
         {
             try
             {
@@ -42,11 +76,19 @@ namespace ContactMicroService.WebApi.Controllers
         [HttpPost("[action]/{id}")]
         public async Task Delete(int id)
         {
-            if (id != 0)
+            try
             {
-                var deleteData = await _contactService.GetContactById(id);
+                if (id != 0)
+                {
+                    var deleteData = await _contactService.GetContactById(id);
 
-                await _contactService.DeleteContact(deleteData);
+                    await _contactService.DeleteContact(deleteData);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
             }
 
 

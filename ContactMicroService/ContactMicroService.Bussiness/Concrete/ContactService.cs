@@ -69,9 +69,6 @@ namespace ContactMicroService.Bussiness.Concrete
 
             var resultContacts=contacts.Where(i => i.ContactInfos.AsQueryable().Any(predicate2));
 
-            //var phoneCount = queryable
-            //    .Where(i => i.ContactInfos.AsQueryable().Any(predicate)).Where(i => i.ContactInfos.AsQueryable().Any(predicate2))
-            //    .Select(i => i);
             var phoneCount = resultContacts.Count();
 
             var reportDto = new ContactReport

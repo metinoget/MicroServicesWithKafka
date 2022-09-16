@@ -100,7 +100,7 @@ namespace ReportMicroService.ContactReports
                         if (item != null)
                         {
                             var rootPath = Path.Combine(this.Environment.ContentRootPath, "wwwroot");
-                            var filePath = Path.Combine("contents", @"ContactReport_" + DateTime.Now.ToString("MM.dd.yyyyTHH.mm") + ".xlsx".Trim());
+                            var filePath = Path.Combine( "contents",@"ContactReport_" + DateTime.Now.ToString("MM.dd.yyyyTHH.mm") + ".xlsx".Trim());
                             var absolutePath = Path.Combine(rootPath, filePath);
                             var exportService = new ExportToExcelService();
                             var excelSource = await exportService.ExportToExcel(report);
