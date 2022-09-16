@@ -6,6 +6,7 @@ PostgreSQL
 Apache ZooKeeper
 Apache Kafka
 .Net 6.0
+UnitOfWork Design Pattern
 Yapılandırmalar: Web servislerinin ayarları ContactMicroService.WebApi ve ReportMicroService.WebApi projeleri altındaki appsettings.json dosyasında saklanır.
 
 Veritabanı yapılandırmasını "appsettings.json" altındaki "ConnectionStrings:Default" altında düzenleyebilirsiniz. Ek olarak DbMigrator uygulaması veritabanı migration işlemini kolaylaştırmaya yarayan bir CommandLineTool'dur. Bu uygulamayı çalıştırarak migration işlemini hızlıca halledebilirsin.
