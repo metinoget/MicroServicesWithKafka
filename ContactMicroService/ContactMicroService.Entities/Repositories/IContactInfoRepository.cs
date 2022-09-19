@@ -9,6 +9,6 @@ namespace ContactMicroService.Entities.Repositories
 {
     public interface IContactInfoRepository : IRepository<ContactInfo>
     {
-        
+        Task<IEnumerable<ContactInfo>> GetDeleteFilteredAll();
     }
 }

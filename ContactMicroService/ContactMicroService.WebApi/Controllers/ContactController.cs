@@ -32,6 +32,22 @@ namespace ContactMicroService.WebApi.Controllers
             }
         }
 
+        [HttpGet("[action]")]
+        public async Task<Response<IEnumerable<Contact>>> GetDeleteFilteredAllData()
+        {
+            try
+            {
+                var contacts = await _contactService.GetDeleteFilteredAllContacts();
+                return new Response<IEnumerable<Contact>>().Ok(contacts.Count(), contacts);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return new Response<IEnumerable<Contact>>().NotFound("Contact cannot found.");
+            }
+        }
+
+
         [HttpPost("[action]/{id}")]
         public async Task<Response<Contact>> GetById(int id)
         {
@@ -53,7 +69,6 @@ namespace ContactMicroService.WebApi.Controllers
                 _logger.LogError(ex.Message);
                 return new Response<Contact>().NotFound("Unhandled Exception.");
             }
-
         }
 
 
@@ -74,31 +89,32 @@ namespace ContactMicroService.WebApi.Controllers
         }
 
         [HttpPost("[action]/{id}")]
-        public async Task Delete(int id)
+        public async Task<Response<Contact>> Delete(int id)
         {
             try
             {
                 if (id != 0)
                 {
                     var deleteData = await _contactService.GetContactById(id);
-
-                    await _contactService.DeleteContact(deleteData);
+                    deleteData.IsDeleted = true;
+                    await _contactService.UpdateContact(deleteData);
+                    return new Response<Contact>().Ok(1, null);
                 }
+
+                return new Response<Contact>().NotFound("Contact can not found");
 
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
+                return new Response<Contact>().NotFound("Delete contact failed");
             }
-
-
         }
 
         [HttpGet("[action]")]
         public async Task<ContactReport> GetContactReportByLocation(string Location)
         {
             return await _contactService.GetReportData(Location);
-
         }
     }
 }

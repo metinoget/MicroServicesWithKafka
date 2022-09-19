@@ -32,6 +32,23 @@ namespace ContactMicroService.WebApi.Controllers
                 return new Response<IEnumerable<ContactInfo>>().NotFound("Contact info cannot found.");
             }
         }
+
+        [HttpGet("[action]")]
+        public async Task<Response<IEnumerable<ContactInfo>>> GetDeleteFilteredAllData()
+        {
+            try
+            {
+                var contactInfos = await _contactInfoService.GetDeleteFilteredAllContactInfos();
+                return new Response<IEnumerable<ContactInfo>>().Ok(contactInfos.Count(), contactInfos);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return new Response<IEnumerable<ContactInfo>>().NotFound("ContactInfo cannot found.");
+            }
+        }
+
+
         [HttpPost("[action]/{id}")]
         public async Task<Response<ContactInfo>> GetById(int id)
         {
@@ -72,19 +89,25 @@ namespace ContactMicroService.WebApi.Controllers
         }
 
         [HttpPost("[action]/{id}")]
-        public async Task Delete(int id)
+        public async Task<Response<Contact>> Delete(int id)
         {
             try
             {
                 if (id != 0)
                 {
                     var deleteData = await _contactInfoService.GetContactInfoById(id);
-
-                    await _contactInfoService.DeleteContactInfo(deleteData);
+                    deleteData.IsDeleted = true;
+                    await _contactInfoService.UpdateContactInfo(deleteData);
+                    return new Response<Contact>().Ok(1, null);
                 }
+
+                return new Response<Contact>().NotFound("Contact info can not found");
+
             }
-            catch (Exception ex) { 
+            catch (Exception ex)
+            {
                 _logger.LogError(ex.Message);
+                return new Response<Contact>().NotFound( "Delete contact info failed");
             }
         }
 

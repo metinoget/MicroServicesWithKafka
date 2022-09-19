@@ -14,16 +14,16 @@ namespace ContactMicroService.DataAccess.Repositories
     {
         public ContactRepository(ContactServiceDBContext context):base(context)
         {
-
         }
 
-        public Task<ContactReport> GetContactReport()
-        {
-            throw new NotImplementedException();
-        }
         public async Task<IQueryable<Contact>> FindByContactInfo(Expression<Func<ContactInfo, bool>> predicate)
         {
             return _context.Contacts.Where(i=>i.ContactInfos.AsQueryable().Any(predicate));
+        }
+
+        public async Task<IEnumerable<Contact>> GetDeleteFilteredAll()
+        {
+            return await _context.Contacts.Where(c => c.IsDeleted == false).ToListAsync();
         }
     }
 }

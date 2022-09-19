@@ -25,12 +25,6 @@ namespace ContactMicroService.Bussiness.Concrete
             return contact;
         }
 
-        public async Task DeleteContact(Contact contact)
-        {
-             _unitOfWork.Contact.Remove(contact);
-            await _unitOfWork.CommitAsync();
-        }
-
         public async Task<IEnumerable<Contact>> GetAllContacts()
         {
             return await _unitOfWork.Contact.GetAllAsync();
@@ -80,6 +74,11 @@ namespace ContactMicroService.Bussiness.Concrete
 
 
             return reportDto;
+        }
+
+        public async Task<IEnumerable<Contact>> GetDeleteFilteredAllContacts()
+        {
+            return await _unitOfWork.Contact.GetDeleteFilteredAll();
         }
     }
 }

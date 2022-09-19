@@ -9,6 +9,6 @@ namespace ReportMicroService.Entities.Repositories
 {
     public interface IReportRepository : IRepository<Report>
     {
-
+        Task<IEnumerable<Report>> GetDeleteFilteredAll();
     }
 }

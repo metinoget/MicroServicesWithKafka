@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactMicroService.DataAccess", "ContactMicroService.DataAccess\ContactMicroService.DataAccess.csproj", "{7CAEB875-CF77-4423-BAC9-1C6DFDD7ACEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactMicroService.DataAccess", "ContactMicroService.DataAccess\ContactMicroService.DataAccess.csproj", "{7CAEB875-CF77-4423-BAC9-1C6DFDD7ACEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactMicroService.Entities", "ContactMicroService.Entities\ContactMicroService.Entities.csproj", "{9B01FEB7-7E6F-4F62-A417-DB3B54408ADE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactMicroService.Entities", "ContactMicroService.Entities\ContactMicroService.Entities.csproj", "{9B01FEB7-7E6F-4F62-A417-DB3B54408ADE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactMicroService.Bussiness", "ContactMicroService.Bussiness\ContactMicroService.Bussiness.csproj", "{436E1DFA-F118-4FB8-BD05-22840F486124}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactMicroService.Bussiness", "ContactMicroService.Bussiness\ContactMicroService.Bussiness.csproj", "{436E1DFA-F118-4FB8-BD05-22840F486124}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactMicroService.WebApi", "ContactMicroService.WebApi\ContactMicroService.WebApi.csproj", "{74ABA18D-7E5B-423F-909B-D8206DF9F646}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContactMicroService.WebApi", "ContactMicroService.WebApi\ContactMicroService.WebApi.csproj", "{74ABA18D-7E5B-423F-909B-D8206DF9F646}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactMicroService.Test", "ContactMicroService.Test\ContactMicroService.Test.csproj", "{00ED121B-B9CE-483A-9996-EB4938DDE018}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{74ABA18D-7E5B-423F-909B-D8206DF9F646}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74ABA18D-7E5B-423F-909B-D8206DF9F646}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74ABA18D-7E5B-423F-909B-D8206DF9F646}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00ED121B-B9CE-483A-9996-EB4938DDE018}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00ED121B-B9CE-483A-9996-EB4938DDE018}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00ED121B-B9CE-483A-9996-EB4938DDE018}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00ED121B-B9CE-483A-9996-EB4938DDE018}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,9 +11,10 @@ namespace ContactMicroService.Bussiness.Abstract
     public interface IContactService
     {
         Task<IEnumerable<Contact>> GetAllContacts();
+
+        Task<IEnumerable<Contact>> GetDeleteFilteredAllContacts();
         Task<Contact> GetContactById(int id);
         Task<Contact> CreateContact(Contact contact);
-        Task DeleteContact(Contact contact);
         Task UpdateContact(Contact contact);
 
         Task<ContactReport> GetReportData(string Location);

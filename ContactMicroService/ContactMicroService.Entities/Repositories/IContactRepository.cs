@@ -11,5 +11,7 @@ namespace ContactMicroService.Entities.Repositories
     public interface IContactRepository : IRepository<Contact>
     {
         Task<IQueryable<Contact>> FindByContactInfo(Expression<Func<ContactInfo, bool>> predicate);
+
+        Task<IEnumerable<Contact>> GetDeleteFilteredAll();
     }
 }
